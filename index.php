@@ -74,7 +74,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>To-Do List</h1>
+        <h1>To-Do Listing</h1>
         <!-- Form for creating a task -->
         <form id="todo-form">
             <input type="text" id="task-input" placeholder="Add a new task" required>
