@@ -1,3 +1,25 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "todo-list_db";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+if(isset($_GET['submit'])){
+    $task_name = $_GET['task_name'];
+    $sql ="INSERT INTO `tasks`(`name`, `status`) VALUES ('$task_name','pending')";
+    $results = $conn->query($sql);
+}
+
+$sql = "SELECT * FROM `tasks` WHERE 1";
+$results = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,7 +85,7 @@
             background: #d9534f;
             border: none;
             color: white;
-            padding: 5px 10px;
+            /* padding: 5px 10px; */
             border-radius: 4px;
             cursor: pointer;
         }
@@ -76,13 +98,22 @@
     <div class="container">
         <h1>To-Do List</h1>
         <!-- Form for creating a task -->  
-        <form id="todo-form">
-            <input type="text" id="task-input" placeholder="Add a new task" required>
-            <button type="submit">Add</button>
+        <form method="GET" action="index.php">
+            <input type="text" id="task-input" name="task_name" placeholder="Add a new task" required>
+            <button type="submit" name="submit">Add</button>
         </form>
         <!-- For Task Listing Display -->  
         <ul id="todo-list">
-            <li>Test 1 <button>Delete</button></li>
+           <?php foreach($results as $value){ ?> 
+            <li><?php echo $value['name']; ?>
+            <button>Edit</button>
+            <button>Delete</button>
+            <?php if ($value['status']== 'pending'){ ?>
+            <button>Mark as Complete</button>
+            <?php } ?>
+        </li>
+            
+           <?php } ?>   
         </ul>
     </div>
 
