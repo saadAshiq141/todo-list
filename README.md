@@ -1,2 +1,2 @@
 # todo-list
-This project is mainly used to manage to-do listing of your daily routine work.
+This project is designed to help users effectively manage and organize their daily routine tasks through an intuitive to-do listing system. It allows users to add tasks to their daily schedule, ensuring nothing is overlooked. Additionally, the system provides functionality to edit tasks as priorities change, delete tasks when no longer needed, and mark tasks as complete once they are accomplished. With its user-friendly interface, this to-do listing system simplifies task management and enhances productivity in day-to-day life.
