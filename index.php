@@ -37,6 +37,7 @@ if(isset($_GET['id'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-Do List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -109,20 +110,34 @@ if(isset($_GET['id'])){
             padding: 5px;
             border-radius: 6px;
         }
-        .delete{
-            align-items: flex-end;
+        .delete{ 
             color: white;
             background: red;
             padding: 5px;
             border-radius: 6px;
         }
+        .delete-div{
+            cursor: pointer;
+            width: 60px ;
+            height: 30px;
+           margin-bottom: 10px;
+        }
         .edit{
-            
             color: white;
             background: skyblue;
             padding: 5px;
-            border-radius: 6px;
-            
+            border-radius: 6px;            
+        }
+        .edit-div{
+            cursor: pointer;
+            width: 40px ;
+            height: 30px;
+            margin-bottom: 10px;
+            margin-left: 30px;
+        }
+        .tasks{
+            width: 300px;
+            height: 50px;
         }
     </style>
 </head>
@@ -137,9 +152,14 @@ if(isset($_GET['id'])){
         <!-- For Task Listing Display -->  
         <ul id="todo-list">
            <?php foreach($results as $value){ ?> 
-            <li><?php echo $value['name']; ?>
+            
+            <li><div class="tasks"><?php echo $value['name']; ?></div>
+            <div class="edit-div">
             <a href="edit.php?id=<?php echo $value['id'] ?>"  class="edit">Edit</a>
+            </div>
+            <div class="delete-div">
             <a href="index.php?id=<?php echo $value['id'] ?>"  class="delete">Delete</a>
+            </div>
             <?php if ($value['status']== 'pending'){ ?>
     
               <a href="markAsComplete.php?id=<?php echo $value['id'] ?>"  class="btn btn-danger">Mark As Complete</a> 
@@ -151,6 +171,7 @@ if(isset($_GET['id'])){
            <?php } ?>   
         </ul>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
